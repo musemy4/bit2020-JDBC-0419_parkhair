@@ -8,7 +8,7 @@ public class Ex01 {
 	Scanner sc=new Scanner(System.in);
 	Scanner sc2=new Scanner(System.in);
 	private String word;
-	private StringTokenizer token;//¼±¾ğ¸¸ÇßÀ½
+	private StringTokenizer token;//ì„ ì–¸ë§Œí–ˆìŒ
 	private String key, value;
 	
 	public Ex01() {
@@ -17,32 +17,32 @@ public class Ex01 {
 	
 	public void play() {
 		System.out.print(">> ");
-		String str=sc.nextLine();//¹®ÀåÀ» ´ã¾ÆÁÖ°í
+		String str=sc.nextLine();//ë¬¸ì¥ì„ ë‹´ì•„ì£¼ê³ 
 		
-		//½ºÆ®¸µ¹öÆÛ: ÀúÀåµÈ ¹®ÀÚ¿­ÀÇ ¼öÁ¤ÀÌ °¡´ÉÇÏ´Ù. ¹®ÀÚ¿­ÀÇ Å©±â°¡ ´Ã¾î³ª¸é ³»ºÎ ¹öÆÛ Å©±â¸¦ ÀÚµ¿ Á¶Àı
+		//ìŠ¤íŠ¸ë§ë²„í¼: ì €ì¥ëœ ë¬¸ìì—´ì˜ ìˆ˜ì •ì´ ê°€ëŠ¥í•˜ë‹¤. ë¬¸ìì—´ì˜ í¬ê¸°ê°€ ëŠ˜ì–´ë‚˜ë©´ ë‚´ë¶€ ë²„í¼ í¬ê¸°ë¥¼ ìë™ ì¡°ì ˆ
 		
 		
-		buffer = new StringBuffer(str);//½ºÆ®¸µ ¹öÆÛ¸¦ »ı¼ºÇÏ°í
+		buffer = new StringBuffer(str);//ìŠ¤íŠ¸ë§ ë²„í¼ë¥¼ ìƒì„±í•˜ê³ 
 		System.out.println(buffer);
 		
 		while(true) {
-			System.out.println("¸í·É:");
+			System.out.println("ëª…ë ¹:");
 			word=sc2.next();
 			
-			if(word.equals("±×¸¸")) {
-				System.out.println("Á¾·áÇÕ´Ï´Ù");
+			if(word.equals("ê·¸ë§Œ")) {
+				System.out.println("ì¢…ë£Œí•©ë‹ˆë‹¤");
 				System.exit(0);
 			}
-			token = new StringTokenizer(word,"!");//¹ŞÀº ¸í·ÉÀ» !·Î Â¥¸§
-			if(token.countTokens()!=2) {//ÅäÅ«ÀÇ ¼ö¸¦ ¼¼±âµµÇÔ ¿À~
-				System.out.println("Àß¸øµÈ ¸í·ÉÀÔ´Ï´Ù");
+			token = new StringTokenizer(word,"!");//ë°›ì€ ëª…ë ¹ì„ !ë¡œ ì§œë¦„
+			if(token.countTokens()!=2) {//í† í°ì˜ ìˆ˜ë¥¼ ì„¸ê¸°ë„í•¨ ì˜¤~
+				System.out.println("ì˜ëª»ëœ ëª…ë ¹ì…ë‹ˆë‹¤");
 			} else {
-				key=token.nextToken();//!¸¦ Áß½ÉÀ¸·ÎÇÏ³ª¾¿ Å°°ª
-				value=token.nextToken();//value°ªÀ¸·Î ´ã°í
+				key=token.nextToken();//!ë¥¼ ì¤‘ì‹¬ìœ¼ë¡œí•˜ë‚˜ì”© í‚¤ê°’
+				value=token.nextToken();//valueê°’ìœ¼ë¡œ ë‹´ê³ 
 				
 				int start=buffer.indexOf(key);
 				if(start ==-1) {
-					System.out.println("Ã£À» ¼ö ¾ø½À´Ï´Ù");
+					System.out.println("ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤");
 				} else {
 					StringTokenizer st = new StringTokenizer(new String(buffer)," ");
 					boolean flag = false;
@@ -57,7 +57,7 @@ public class Ex01 {
 						buffer.replace(start, end, value);
 						System.out.println(buffer);
 					} else {
-						System.out.println("Ã£À» ¼ö ¾ø½À´Ï´Ù!");
+						System.out.println("ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤!");
 					}
 				}
 			}
