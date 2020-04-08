@@ -1,4 +1,5 @@
-package w4.day17;
+  
+package suwop.w4.d17;
 
 import java.util.*;
 
@@ -46,8 +47,11 @@ public class EngTest {
 		p.add(new Word("see","보기"));
 		p.add(new Word("computer","컴퓨터"));
 		p.add(new Word("rice","쌀"));
+		p.add(new Word("kimbab","김밥"));
+		p.add(new Word("jjajangmyeon","짜장면"));
+		p.add(new Word("juice","주스"));
 
-
+		
 		System.out.println("\"명품영어\"의 단어 테스트를 시작합니다. -1을 입력하면 종료합니다.");
 		System.out.println("현재 "+p.size()+"개의 단어가 들어 있습니다");
 		while(true) {
@@ -55,7 +59,7 @@ public class EngTest {
 			
 			//4개 뽑기
 			while(gets.size()!=4) {
-				gets.add(p.get(rand.nextInt(14)+1));
+				gets.add(p.get(rand.nextInt(p.size()-1)+1));
 				//System.out.println(gets);
 			}
 			
@@ -85,6 +89,10 @@ public class EngTest {
 			
 			if(answer-1==dap) {
 				System.out.println("Exellent!");
+				for(int m=0;m<p.size();m++) {
+				if(quiz.get(dap).getEng().equals(p.get(m).getEng()))//맞춘거 없앰
+					p.remove(m);
+				}
 			} else {
 				System.out.println("No.........!!!!!!");
 			}
