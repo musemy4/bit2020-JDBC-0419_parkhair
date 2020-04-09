@@ -140,20 +140,17 @@ public class Calc_0410 extends Frame implements ActionListener {
 			return;
 		}
 		
-		else if(val.equals("+")) {
+		if(val.equals("+")) {
 			op=1;
-			allinput.setText(allinput.getText()+val);
 		} else if(val.equals("-")) {
 			op=2;
-			allinput.setText(allinput.getText()+val);
 		} else if(val.equals("*")) {
 			op=3;
-			allinput.setText(allinput.getText()+val);
 		} else if(val.equals("÷")) {
 			op=4;
-			allinput.setText(allinput.getText()+val);
 		} 
 		
+		allinput.setText(allinput.getText()+val);
 		state=true;//다음에 숫자가 들어오겠지
 		sum+=(new Double(input.getText())).doubleValue();//실수화함????
 	
