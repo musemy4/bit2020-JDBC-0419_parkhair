@@ -130,7 +130,7 @@ public class Calc_0410 extends Frame implements ActionListener {
 
 	
 	//여기서는 연산자가 메뉴값으로 변환됨
-	public void operator(String val) {
+	public void operator(String val) {//연산자는 val로 저장안됨
 		//연산자여러번 눌리는거 방지
 		char opdetector=allinput.getText().charAt(allinput.getText().length()-1);
 		if(opdetector=='+'||opdetector=='-'||opdetector=='*'||opdetector=='/')return;
@@ -152,7 +152,7 @@ public class Calc_0410 extends Frame implements ActionListener {
 		
 		allinput.setText(allinput.getText()+val);
 		state=true;//다음에 숫자가 들어오겠지
-		sum=(new Double(input.getText())).doubleValue();//실수화함????
+		sum=(new Double(input.getText())).doubleValue();//두개연산될때 앞숫자 실수화
 	
 	
 	}//operator end
@@ -161,7 +161,7 @@ public class Calc_0410 extends Frame implements ActionListener {
 	public void result() {
 		double result=0;
 		
-		double in=(new Double(input.getText())).doubleValue();
+		double in=(new Double(input.getText())).doubleValue();//뒷숫자 
 		
 		switch(op) {
 			case 1: result=sum+in;break;
