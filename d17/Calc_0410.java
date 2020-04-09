@@ -152,7 +152,7 @@ public class Calc_0410 extends Frame implements ActionListener {
 		
 		allinput.setText(allinput.getText()+val);
 		state=true;//다음에 숫자가 들어오겠지
-		sum+=(new Double(input.getText())).doubleValue();//실수화함????
+		sum=(new Double(input.getText())).doubleValue();//실수화함????
 	
 	
 	}//operator end
