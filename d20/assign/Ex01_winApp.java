@@ -356,15 +356,29 @@ public class MyFrame extends JFrame {
 				}
 				
 				for(int i=0;i<member.size();i++) {
-					String line=member.get(i).toString();
+					String name=member.get(i).getName();
+					String gender=member.get(i).getGender();
+					String phone=member.get(i).getPhone();
+					String mail=member.get(i).getmail();
+					String line=name+" "+gender+" "+phone+" "+mail+"\n";
+					System.out.println(line);
 					try {
 						fw.write(line,0,line.length());
+												
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					
+					
 				}
 				
+				try {
+					fw.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 				JOptionPane.showMessageDialog(frame, "저장이 완료되었습니다!");
 			}
