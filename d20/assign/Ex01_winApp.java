@@ -359,7 +359,6 @@ public class MyFrame extends JFrame {
 					String line=member.get(i).toString();
 					try {
 						fw.write(line,0,line.length());
-						fw.write("\r\n",0,2);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
