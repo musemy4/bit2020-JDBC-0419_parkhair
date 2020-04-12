@@ -1,33 +1,11 @@
 package week4.assign;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.Vector;
 import java.awt.event.ActionEvent;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import javax.swing.JTextArea;
-import javax.swing.JComboBox;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
+import java.awt.event.ActionListener;
+import java.util.*;
+import java.awt.*;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.ImageIcon;
-import javax.swing.JFormattedTextField;
-import javax.swing.ButtonGroup;
-import javax.swing.DropMode;
-import javax.swing.JTable;
-import javax.swing.JRadioButton;
 
 class MemBer{
 	
@@ -137,7 +115,7 @@ public class MyFrame extends JFrame {
 		JLabel lbl_title = new JLabel("<회원 명단>");
 		lbl_title.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_title.setFont(new Font("궁서", Font.BOLD, 25));
-		lbl_title.setBounds(17, 41, 181, 47);
+		lbl_title.setBounds(95, 52, 181, 47);
 		frame.getContentPane().add(lbl_title);
 		
 		JLabel lbl_size = new JLabel("총 : ");
