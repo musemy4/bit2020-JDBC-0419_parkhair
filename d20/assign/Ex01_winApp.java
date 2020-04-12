@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.awt.*;
 import javax.swing.*;
@@ -13,25 +15,25 @@ class MemBer{
 	
 	private String name;
 	private String gender;
-	private String email;
 	private String phone;
+	private String mail;
 	
 	//게터세터
 	public String getName() {return name;}
 	public void setName(String name) {this.name = name;}
 	public String getGender() {return gender;}
 	public void setGender(String gender) {this.gender = gender;}
-	public String getEmail() {return email;}
-	public void setEmail(String email) {this.email = email;}
+	public String getmail() {return mail;}
+	public void setmail(String mail) {this.mail = mail;}
 	public String getPhone() {return phone;}
 	public void setPhone(String phone) {this.phone = phone;}
 
 	
-	public MemBer(String name, String gender,String email, String phone) {
+	public MemBer(String name, String gender,String mail, String phone) {
 		this.name = name;
 		this.gender=gender;
-		this.email = email;
 		this.phone = phone;
+		this.mail = mail;
 	}
 }
 
@@ -48,6 +50,7 @@ public class MyFrame extends JFrame {
 	private JTextField tx_mail;
 	private JTextField tx_phone;
 
+	private FileWriter fw;
 	
 	public MyFrame() {
 		
@@ -76,7 +79,7 @@ public class MyFrame extends JFrame {
 		
 		//결과물이 나올 판넬
 		scrollPane = new JScrollPane(table);//테이블은 스크롤팬에 담는다
-		scrollPane.setBounds(309, 73, 499, 248);
+		scrollPane.setBounds(309, 88, 499, 233);
 		frame.getContentPane().add(scrollPane);
 		
 
@@ -134,7 +137,7 @@ public class MyFrame extends JFrame {
 		//
 		tx_name = new JTextField();
 		tx_name.setFont(new Font("굴림", Font.PLAIN, 12));
-		tx_name.setBounds(130, 187, 146, 29);
+		tx_name.setBounds(130, 187, 146, 27);
 		frame.getContentPane().add(tx_name);
 		tx_name.setColumns(10);
 		
@@ -168,7 +171,7 @@ public class MyFrame extends JFrame {
 				else rows[1]="female";
 				rows[2]=tx_phone.getText();
 				rows[3]=tx_mail.getText();
-				model.addRow(rows);//한줄씩 대입한다
+				model.addRow(rows);//보여지는 것에도
 			
 				tx_name.setText("");
 				tx_mail.setText("");
@@ -180,11 +183,11 @@ public class MyFrame extends JFrame {
 				String gender=rows[1];
 				String phone=rows[2];
 				String mail=rows[3];
-				member.add(new MemBer(name,gender,phone,mail));//벡터에 저장되겠네~
+				member.add(new MemBer(name,gender,phone,mail));//벡터에도 저장되겠네~
 				lbl_size.setText("total : "+member.size());
 				
 				JOptionPane.showMessageDialog(frame, "추가가 성공적으로 완료되었습니다");
-				
+				table.setModel(model);
 			}
 			
 		});
@@ -227,6 +230,41 @@ public class MyFrame extends JFrame {
 		frame.getContentPane().add(btnNewButton_cancel);
 		
 		JButton btnNewButton_modify = new JButton("Modify");
+		btnNewButton_modify.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int rowIndex = table.getSelectedRow();
+			
+				String name=tx_name.getText();
+				String mail=tx_mail.getText();
+				String phone=tx_phone.getText();
+				String gender=null;
+				if(rb_m.isSelected())gender="male";
+				else gender="female";
+				
+				if(name.equals("")) {
+					name = member.get(rowIndex).getName();
+				}
+				if(phone.equals("")) {
+					phone = member.get(rowIndex).getPhone();
+				}
+				if(mail.equals("")) {
+					mail = member.get(rowIndex).getmail();
+				}
+				member.set(rowIndex,new MemBer(name,gender,phone,mail));
+				model.removeRow(rowIndex);
+				String[] rows=new String[4];
+				rows[0]=name;
+				rows[1]=gender;
+				rows[2]=phone;
+				rows[3]=mail;
+				
+				model.insertRow(rowIndex, rows);
+				
+				JOptionPane.showMessageDialog(frame, "수정이 성공적으로 완료되었습니다");
+				table.setModel(model);
+			}
+		});
 		btnNewButton_modify.setFont(new Font("궁서", Font.PLAIN, 12));
 		btnNewButton_modify.setBounds(558, 350, 92, 29);
 		frame.getContentPane().add(btnNewButton_modify);
@@ -276,6 +314,7 @@ public class MyFrame extends JFrame {
 		//파일열기
 		JButton btnNewButton_open = new JButton("Open");
 		btnNewButton_open.addActionListener(new ActionListener() {
+			@SuppressWarnings("resource")
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(frame, "파일에서 자료를 가져옵니다..");
 				Scanner sc = null;
@@ -303,13 +342,36 @@ public class MyFrame extends JFrame {
 			}
 		});
 		btnNewButton_open.setFont(new Font("궁서", Font.PLAIN, 12));
-		btnNewButton_open.setBounds(621, 29, 85, 29);
+		btnNewButton_open.setBounds(309, 44, 85, 29);
 		frame.getContentPane().add(btnNewButton_open);
 		
 		//파일저장하기
 		JButton btnNewButton_save = new JButton("Save");
+		btnNewButton_save.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				 try {
+					fw = new FileWriter("C:/JSP/list2.txt");
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(frame, "경로가 잘못되었습니다...");
+				}
+				
+				for(int i=0;i<member.size();i++) {
+					String line=member.get(i).toString();
+					try {
+						fw.write(line,0,line.length());
+						fw.write("\r\n",0,2);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+				
+				JOptionPane.showMessageDialog(frame, "저장이 완료되었습니다!");
+			}
+		});
 		btnNewButton_save.setFont(new Font("궁서", Font.PLAIN, 12));
-		btnNewButton_save.setBounds(723, 29, 85, 29);
+		btnNewButton_save.setBounds(411, 44, 85, 29);
 		frame.getContentPane().add(btnNewButton_save);
 		
 		
