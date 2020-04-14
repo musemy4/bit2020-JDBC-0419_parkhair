@@ -1,0 +1,29 @@
+{
+  "membertArr": [
+    {
+      "no": 1,
+      "phone": "010-1111-1111",
+      "name": "홍길동",
+      "email": "hong@a.com"
+    },
+    {
+      "no": 4,
+      "phone": "010-2222-4444",
+      "name": "이길동",
+      "email": "lee@a.com"
+    },
+    {
+      "no": 5,
+      "phone": "010-2222-3333",
+      "name": "박길동",
+      "email": "park@a.com"
+    },
+    {
+      "no": 6,
+      "phone": "010-2222-2222",
+      "name": "김길동",
+      "email": "kim@a.com"
+    }
+  ],
+  "seq": 7
+}
