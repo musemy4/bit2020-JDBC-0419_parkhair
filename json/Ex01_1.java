@@ -1,74 +1,99 @@
-package java_suwop_d21.test.json;
+package json;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
-import org.json.*;
-//ÆÄÀÏ Ãâ·ÂÇÏ±â
-public class Ex01_1 {
-	//JSON-in(org.json)
-	//GSON-google
-	//JSON °ü·Ã ¶óÀÌºê·¯¸®´Â ¸¹´Ù.
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+public class Json_write {
+
+	//1.JSONObject, 2.JSONArray, JSONTokener
+	//1. {key:value, key:value,...} Mapê³¼ê°™ì€
+	//2.[{...},{...},...] listArrayì™€ ê°™ì€
 	
 	public static void main(String[] args) throws IOException {
-		  // JSONObject, JSONArray, JSONTokener ...
-		  // {key:value, key:value ...}
-		  // [{...}, {...} ...]
-		JSONObject people = new JSONObject();
-		people.put("name", "È«±æµ¿");
-		people.put("email", "hong@naver.com");
-		people.put("phone", "010-3333-3333");
 		
-		JSONArray peopleArr = new JSONArray();
-		peopleArr.put(people);//ÇÏ³ª³Ö°í
-		
-		System.out.println(peopleArr.toString(2));
-		System.out.println("---------------------");
-		
-		people = new JSONObject();
-		people.put("name", "ÄáÁã");
-		people.put("email", "kong@naver.com");
-		people.put("phone", "010-2222-2222");
-		people.put("gender", "male");
-		peopleArr.put(people);//µÑÂ°³Ö°í
-		
-		System.out.println(peopleArr.toString(2));
-		System.out.println("---------------------");
-		
-		people = new JSONObject();
-		people.put("name", "ÆÏÁã");
-		people.put("email", "pot@naver.com");
-		people.put("phone", "010-3333-3333");
-		peopleArr.put(people);//¼ÂÂ°³Ö°í
-		
-		System.out.println(peopleArr.toString(2));
-		System.out.println("---------------------");
+		JSONObject member = new JSONObject();
+		member.put("no", 1);
+		member.put("name", "í™ê¸¸ë™");
+		member.put("phone", "010-1111-1111");
+		member.put("email", "hong@naver.com");
 		
 		
+		JSONArray memberArr = new JSONArray();
+	
+		memberArr.put(member);
 		
-		JSONObject jsonObj = new JSONObject();
-		jsonObj.put("peopleArr",peopleArr);
+		member = new JSONObject();
+		member.put("no", 2);
+		member.put("name", "ì´ì†Œë¦¼");
+		member.put("phone", "010-2222-2222");
+		member.put("email", "me@naver.com");
 		
-		jsonObj.put("cnt",2);
-		System.out.println(jsonObj.toString(2));
+		memberArr.put(member);
+		
+		member = new JSONObject();
+		member.put("no", 3);
+		member.put("name", "ì´ë‹¹");
+		member.put("phone", "010-3333-3333");
+		member.put("email", "sis@naver.com");
+		
+		memberArr.put(member);
+		
+		member = new JSONObject();
+		member.put("no", 4);
+		member.put("name", "ì´í›™");
+		member.put("phone", "010-4444-4444");
+		member.put("email", "bro@naver.com");
+		
+		memberArr.put(member);
+		
+		member = new JSONObject();
+		member.put("no", 5);
+		member.put("name", "ì¤€");
+		member.put("phone", "010-5555-5555");
+		member.put("email", "fa@naver.com");
+		
+		memberArr.put(member);
+		
+		member = new JSONObject();
+		member.put("no", 6);
+		member.put("name", "ìˆœ");
+		member.put("phone", "010-6666-6666");
+		member.put("email", "ma@naver.com");
+		
+		memberArr.put(member);
+		
+		//ë©¤ë²„ë“¤ì„ í¬í•¨í•  ê°€ì¥ í° ì˜¤ë¸Œì íŠ¸
+		JSONObject wangjsonObj = new JSONObject();
+		wangjsonObj.put("memberArr", memberArr);//ìœ„ì—ìˆì—ˆë˜ arrë„ ë„£ê³ 
+		
+		wangjsonObj.put("seq", 7);//ë‹¤ìŒì˜¬ì°¨ë¡€
 		
 		
-		//ÆÄÀÏÀÔÃâ·Â
-		File file = new File("E:/peoples.json");
+		
+		
+		//íŒŒì¼ì…ì¶œë ¥
+		File file = new File("C:/JSP/0414swing_mvc/json/member.json");
 		
 		if(!file.exists()) {
 			if(file.createNewFile()) {
-				System.out.println("»õ ÆÄÀÏÀÌ »ı¼º µÇ¾ú½À´Ï´Ù!");
+				System.out.println("ìƒˆíŒŒì¼ì´ ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			}
 		}
 		
 		FileWriter fw = new FileWriter(file);
-		fw.write(jsonObj.toString(2));
-		System.out.println("ÆÄÀÏ ¾²±â ¿Ï·á!");
+		fw.write(wangjsonObj.toString(2));
+		System.out.println("íŒŒì¼ ì“°ê¸° ì™„ë£Œ!");
+		
+		//**í•­ìƒ ë‹«ì•„ì¤˜ì•¼í•œë‹¤
 		if(fw!=null) {
 			fw.close();
 		}
 		
 		
 	}
-	
+
 }
