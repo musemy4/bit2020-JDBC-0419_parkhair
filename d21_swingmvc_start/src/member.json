@@ -1,0 +1,41 @@
+{
+  "memberArr": [
+    {
+      "no": 1,
+      "phone": "010-1111-1111",
+      "name": "홍길동",
+      "email": "hong@naver.com"
+    },
+    {
+      "no": 3,
+      "phone": "010-3333-3333",
+      "name": "이당",
+      "email": "sis@naver.com"
+    },
+    {
+      "no": 4,
+      "phone": "010-4444-4444",
+      "name": "이훙",
+      "email": "bro@naver.com"
+    },
+    {
+      "no": 5,
+      "phone": "010-5555-5555",
+      "name": "준",
+      "email": "fa@naver.com"
+    },
+    {
+      "no": 6,
+      "phone": "010-6666-6666",
+      "name": "순",
+      "email": "ma@naver.com"
+    },
+    {
+      "no": 8,
+      "phone": "010-8888-8888",
+      "name": "이소림",
+      "email": "me@naver.com"
+    }
+  ],
+  "seq": 9
+}
