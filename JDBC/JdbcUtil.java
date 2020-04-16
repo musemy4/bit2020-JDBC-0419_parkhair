@@ -10,11 +10,11 @@ public class JdbcUtil {
 		
 		
 		try {
-			// 1.µå¶óÀÌ¹ö ºÒ·¯¿À±â
-			Class.forName("org.h2.Driver");
-			System.out.println("µå¶óÀÌ¹ö °Ë»ö ¼º°ø!");
+			// 1.ë“œë¼ì´ë²„ ë¶ˆëŸ¬ì˜¤ê¸°
+			Class.forName("org.h2.Driver");//í™•ì¥ìëª…ì€ ë¶™ì´ì§€ ì•ŠëŠ”ë‹¤
+			System.out.println("ë“œë¼ì´ë²„ ê²€ìƒ‰ ì„±ê³µ!");
 		
-			// 2.Ä¿³Ø¼Ç °´Ã¼ ¾ò¾î¿À±â _µå¶óÀÌ¹ö¸¦ ºÒ·¯¿À¸é µå¶óÀÌ¹ö¸Å´ÏÀú¸¦ ¾µ¼öÀÖÀ½(url,user,pwd)
+			// 2.ì»¤ë„¥ì…˜ ê°ì²´ ì–»ì–´ì˜¤ê¸° _ë“œë¼ì´ë²„ë¥¼ ë¶ˆëŸ¬ì˜¤ë©´ ë“œë¼ì´ë²„ë§¤ë‹ˆì €ë¥¼ ì“¸ìˆ˜ìˆìŒ(url,user,pwd)
 			String url="jdbc:h2:tcp://localhost/~/test";
 			String user="sa";
 			String pwd="";
@@ -24,11 +24,11 @@ public class JdbcUtil {
 				
 				return conn;
 			} catch (SQLException e) {
-				System.out.println("DBÄ¿³Ø¼Ç ½ÇÆĞ!");
+				System.out.println("DBì»¤ë„¥ì…˜ ì‹¤íŒ¨!");
 				e.printStackTrace();
 			}
 		} catch (ClassNotFoundException e) {
-			System.out.println("µå¶óÀÌ¹ö °Ë»ö ½ÇÆĞ!");
+			System.out.println("ë“œë¼ì´ë²„ ê²€ìƒ‰ ì‹¤íŒ¨!");
 			e.printStackTrace();
 		}
 		
@@ -39,9 +39,9 @@ public class JdbcUtil {
 		
 		
 		try {
-			// 1.µå¶óÀÌ¹ö ºÒ·¯¿À±â
+			// 1.ë“œë¼ì´ë²„ ë¶ˆëŸ¬ì˜¤ê¸°
 			Class.forName("org.h2.Driver");
-			System.out.println("µå¶óÀÌ¹ö °Ë»ö ¼º°ø!");
+			System.out.println("ë“œë¼ì´ë²„ ê²€ìƒ‰ ì„±ê³µ!");
 		
 			try {
 				Connection conn = DriverManager.getConnection(url,user,pwd);
@@ -49,11 +49,11 @@ public class JdbcUtil {
 				
 				return conn;
 			} catch (SQLException e) {
-				System.out.println("DBÄ¿³Ø¼Ç ½ÇÆĞ!");
+				System.out.println("DBì»¤ë„¥ì…˜ ì‹¤íŒ¨!");
 				e.printStackTrace();
 			}
 		} catch (ClassNotFoundException e) {
-			System.out.println("µå¶óÀÌ¹ö °Ë»ö ½ÇÆĞ!");
+			System.out.println("ë“œë¼ì´ë²„ ê²€ìƒ‰ ì‹¤íŒ¨!");
 			e.printStackTrace();
 		}
 		
