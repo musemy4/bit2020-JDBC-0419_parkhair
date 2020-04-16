@@ -26,7 +26,8 @@ public class MainFrame extends JFrame implements R{
 		
 		main.add(inputView);
 		inputView.setBounds(411, 93, 296, 399);
-		
+		inputView.setBackground(new Color(255, 255, 255));
+		inputView.setLayout(null);
 	}
 	
 	
