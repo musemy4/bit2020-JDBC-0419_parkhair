@@ -140,6 +140,7 @@ public class DAO {
 		int exaccumpoint=0;
 		int expoint=0;
 		String membership=null;
+		//1고객번호로 멤버정보조회=>2에서 포인트적립과 멤버십업뎃을 위한
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getIdx());
@@ -157,25 +158,28 @@ public class DAO {
 			e.printStackTrace();
 		} 
 		
+	
+		
 		int rn;
 		sql="update members set accumpoint=?, point=?, membership=? where idx=?";
 		
 		double willpoint=dto.getWillpoint();
 		
 		int accumpoint=(int) (exaccumpoint+willpoint);
-		
-	
+			
 		int point=(int)(expoint+willpoint-dto.getUsepoint());
+		
+		//2
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, accumpoint);
 			pstmt.setInt(2, point);
-			if(accumpoint>10000) {
-				pstmt.setString(3, "고객님");
-			} else if(accumpoint>30000) {
-				pstmt.setString(3, "붙박이님");
-			}else {
+			if(accumpoint<10000) {
 				pstmt.setString(3, "손님");
+			} else if(accumpoint<30000) {
+				pstmt.setString(3, "고객님");
+			}else {
+				pstmt.setString(3, "붙박이님");
 			}
 			pstmt.setString(4, dto.getIdx());
 			
