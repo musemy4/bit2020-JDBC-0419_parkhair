@@ -20,6 +20,9 @@ public class DeleteController implements Controller {
 		
 		
 		dao.delete(dto);
+		dao.deletememserv(dto);
+		
+		
 
 	}
 
