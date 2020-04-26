@@ -238,7 +238,6 @@ public class DAO {
 	}
 
 	public void deletememserv(DTO dto) {
-		Vector<Object> members=new Vector<Object>();
 		
 		conn=Connect.getConnection();
 		PreparedStatement pstmt=null;
@@ -267,6 +266,73 @@ public class DAO {
 		}
 		
 	}
+
+	public void modifyphone(DTO dto) {
+		conn=Connect.getConnection();
+		PreparedStatement pstmt=null;
+		int rn=0;
+		String sql="update members set phone=? where idx=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getPhone());
+			pstmt.setString(2, dto.getIdx());
+				
+			rn=pstmt.executeUpdate();
+			
+			if(rn>0)JOptionPane.showMessageDialog(null, "회원의 번호가 수정되었습니다");
+			else System.out.println("회원의 번호 수정에 실패하였습니다!");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt!=null)pstmt.close();
+				if(conn!=null)conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public int isthere(DTO dto) {
+		conn=Connect.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int rn=0;
+		String sql="Select * from members where idx=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getIdx());
+				
+			rs=pstmt.executeQuery();
+			System.out.println("rs!=null: "+rs!=null);
+			System.out.println("여기와???");
+			
+			while(rs.next()) {
+				rn++;
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(pstmt!=null)pstmt.close();
+				if(conn!=null)conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return rn;
+	}
+
 }
 	
 
