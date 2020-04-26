@@ -147,30 +147,19 @@ public class DAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(pstmt!=null)pstmt.close();
+				if(conn!=null)conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 			return members;
 		}
-
-	public void delete(DTO dto) {
-		conn=Connect.getConnection();
-		PreparedStatement pstmt=null;
-		int rn;
-		String sql="delete from members where idx=?";
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getIdx());
-				
-			rn=pstmt.executeUpdate();
-			
-			if(rn>0)JOptionPane.showMessageDialog(null, "삭제되었습니다");
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	}
 
 	public Vector<Object> searchmemserv(DTO dto) {
 		Vector<Object> members=new Vector<Object>();
@@ -178,11 +167,11 @@ public class DAO {
 		conn=Connect.getConnection();
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="Select * from services where name=?";
+		String sql="search * from services where idx=?";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getName());
+			pstmt.setString(1, dto.getIdx());
 				
 			rs=pstmt.executeQuery();
 			
@@ -205,15 +194,79 @@ public class DAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(pstmt!=null)pstmt.close();
+				if(conn!=null)conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 			return members;
 	}
+	
+	
+	public void delete(DTO dto) {
+		conn=Connect.getConnection();
+		PreparedStatement pstmt=null;
+		int rn;
+		String sql="delete from members where idx=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getIdx());
+				
+			rn=pstmt.executeUpdate();
+			
+			if(rn>0)System.out.println("회원정보가 삭제되었습니다");
+			else System.out.println("회원정보 삭제가 실패하였습니다");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt!=null)pstmt.close();
+				if(conn!=null)conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 
+	public void deletememserv(DTO dto) {
+		Vector<Object> members=new Vector<Object>();
 		
+		conn=Connect.getConnection();
+		PreparedStatement pstmt=null;
+		int rn=0;
+		String sql="delete from services where idx=?";
 		
-	
-	
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getIdx());
+				
+			rn=pstmt.executeUpdate();
+			
+			if(rn>0)JOptionPane.showMessageDialog(null, "회원과 회원 서비스정보가 삭제되었습니다");
+			else System.out.println("회원의 서비스삭제가 실패하였습니다!");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt!=null)pstmt.close();
+				if(conn!=null)conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
 }
 	
 
